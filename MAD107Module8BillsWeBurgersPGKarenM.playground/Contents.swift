@@ -12,9 +12,11 @@ print("*************************************************************************
 print("********                            Code using Enums and Functions                                   ********")
 print("*************************************************************************************************************")
 
+
+
 //.. Menu items
 
-var menuDictionary = ["French Fries": (price: 12.25, desc: nil),
+var menuDictionary = ["French Fries": (price: 12.25, desc: "Super Deluxe French Fries"),
                       "Onion Rings": (price: 2.50, desc: "Onion Rings"),
                       "Cheese Stix":(price: 1.25, desc: "Cheese Stix"),
                       "Soda C":(price: 1.00, desc: "Coke"),
@@ -26,44 +28,44 @@ var menuDictionary = ["French Fries": (price: 12.25, desc: nil),
 ]
 
 enum FoodOrder {
-    case burger(String)
-    case frenchfries(ffdesc: String, ffprc: Double)
-    case softdrink(String, String, Double)
-    case chickensandwich(String, Double)
-    case gyro(String, Double)
-    case onionrings(String, Double)
-    case cheesestix(csdesc: String, csprc: Double)
+    case burger(burger: String)
+    case frenchfries(ffDesc: String, ffPrc: Double)
+    case softdrink(sdDesc: String, sdPrc: Double)
+    case chickensandwich(csDesc: String, csPrc: Double)
+    case gyro(gDesc: String, gPrc: Double)
+    case onionrings(orDesc: String, orPrc: Double)
+    case cheesestix(csxDesc: String, csxPrc: Double)
 }
 
 
-var kamffdesc = menuDictionary["French Fries"]
-print(kamffdesc)
-
-var kam77 = FoodOrder.frenchfries(ffdesc: kamffdesc?.desc ?? "I want to cry", ffprc: kamffdesc?.price ?? 0)
-
-var kamff = FoodOrder.frenchfries(ffdesc: kamffdesc?.desc ?? "Mega Awesome French Fries", ffprc: kamffdesc?.price ?? 0)
-print("this is the most insane thing ever: \(kamffdesc?.desc ?? "wtf")")
-print("this is the most insane thing ever2: \(kam77)")
-//print("this is the most insane thing ever3: \(ffdesc)")
-
-switch kamff {
-    
-case .burger(_):
-    print("hi1")
-case .frenchfries(let ffdesc, let ffprc):
-    print("hi1")
-    print("Does this thing actually work??? so convoluted... ffdesc: \(ffdesc) ffprc: \(ffprc)")
-case .softdrink(_, _, _):
-    print("hi1")
-case .chickensandwich(_, _):
-    print("hi1")
-case .gyro(_, _):
-    print("hi1")
-case .onionrings(_, _):
-    print("hi1")
-case .cheesestix(_, _):
-    print("hi1")
-}
+//var kamffdesc = menuDictionary["French Fries"]
+//print(kamffdesc)
+//
+//var kam77 = FoodOrder.frenchfries(ffDesc: kamffdesc?.desc ?? "I want to cry", ffPrc: kamffdesc?.price ?? 0)
+//
+//var kamff = FoodOrder.frenchfries(ffDesc: kamffdesc?.desc ?? "Mega Awesome French Fries", ffPrc: kamffdesc?.price ?? 0)
+//print("this is the most insane thing ever: \(kamffdesc?.desc ?? "wtf")")
+//print("this is the most insane thing ever2: \(kam77)")
+////print("this is the most insane thing ever3: \(ffdesc)")
+//
+//switch kamff {
+//
+//case .burger(_):
+//    print("hi1")
+//case .frenchfries(let ffdesc, let ffprc):
+//    print("hi1")
+//    print("Does this thing actually work??? so convoluted... ffdesc: \(ffdesc) ffprc: \(ffprc)")
+//case .softdrink(_, _):
+//    print("hi1")
+//case .chickensandwich(_, _):
+//    print("hi1")
+//case .gyro(_, _):
+//    print("hi1")
+//case .onionrings(_, _):
+//    print("hi1")
+//case .cheesestix(_, _):
+//    print("hi1")
+//}
 
 enum BurgerType {
     case baconBurger(type: String , desc: String, price: Double )
@@ -76,6 +78,139 @@ enum BurgerType {
     case pizzaBurger(type: String , desc: String, price: Double )
     case everythingBurger(type: String , desc: String, price: Double )
 }
+
+struct itemsOrdered2 {
+    
+    var itemOrdered: FoodOrder
+    var itemDesc: itemOrdered.ffDesc
+    
+    var testMsg2: String {
+        //printOrder()
+        return "Thank you for ordering! \(itemOrdered)"
+    }
+    
+    func printOrder() {
+        
+        switch itemOrdered { 
+            
+        case .burger:
+            print("nice burger")
+        case .frenchfries, .chickensandwich, .softdrink,
+             .gyro, .onionrings, .cheesestix:
+            
+            //print("nice french fries")
+            //print("Item: \(ffDesc) Price: \(ffPrc)")
+            print("Item -->: \(desc) Price: \(prc)")
+            
+        }
+    }
+    
+//    func printOrder() {
+//
+//        switch itemOrdered {
+//
+//        case .burger(let burger):
+//            print("nice burger")
+//        case .frenchfries(let desc, let prc), .chickensandwich(let desc, let prc), .softdrink(let desc, let prc),
+//             .gyro(let desc, let prc), .onionrings(let desc, let prc), .cheesestix(let desc, let prc):
+//
+//            //print("nice french fries")
+//            //print("Item: \(ffDesc) Price: \(ffPrc)")
+//            print("Item -->: \(desc) Price: \(prc)")
+//
+//        }
+//    }
+    
+//    func printOrder() {
+//
+//        switch itemOrdered {
+//
+//        case .burger(let burger):
+//            print("nice burger")
+//        case .frenchfries(let ffDesc, let ffPrc):
+//            print("nice french fries")
+//            print("Item: \(ffDesc) Price: \(ffPrc)")
+//        case .softdrink(let sdDesc, let sdPrc):
+//            print("nice softdrink")
+//            print("Item: \(sdDesc) Price: \(sdPrc)")
+//        case .chickensandwich(let csDesc, let csPrc):
+//            print("nice chicken sandwich")
+//        case .gyro(let gDesc, let gPrc):
+//            print("nice gyro")
+//        case .onionrings(let orDesc, let orPrc):
+//            print("nice onion rings")
+//            print("Item: \(orDesc) Price: \(orPrc)")
+//        case .cheesestix(let csxDesc, let csxPrc):
+//            print("nice cheese stix")
+//        }
+//    }
+    
+    
+    
+    
+}
+
+
+func placeMyOrder (item: String) {
+    
+    //var itemArray: [String] = ["french fries", "soda", "cheesestix", "burger", "chicken sandwich", "gyro", "onion rings"]
+    
+    var myItem = item
+    var myMenu = menuDictionary
+    var itemFound = myMenu.keys.contains(myItem)
+    
+    //print("@@@@@@ is this really gonna work?111 idk.... \(itemFound)")
+    
+    if myMenu.keys.contains(myItem) {
+        print("@@@@@@ is this really gonna work?222 idk.... \(itemFound)")
+        print(myItem)
+        switch myItem {
+        case "French Fries":
+            //print("French Fries")
+            //var myFF = itemsOrdered2(itemOrdered: FoodOrder.frenchfries(ffDesc: "wfh", ffPrc: 99))
+            var myFF = itemsOrdered2(itemOrdered: FoodOrder.frenchfries(ffDesc: menuDictionary[myItem]?.desc ?? " ", ffPrc: menuDictionary[myItem]?.price ?? 0))
+            //print(myFF.testMsg2)
+            print(myFF.printOrder())
+        case "Onion Rings":
+            //print("Onion Rings")
+            var myOR = itemsOrdered2(itemOrdered: FoodOrder.onionrings(orDesc: menuDictionary[myItem]?.desc ?? " ", orPrc: menuDictionary[myItem]?.price ?? 0))
+            print(myOR.printOrder())
+        case "Cheese Stix":
+            var myCSX = itemsOrdered2(itemOrdered: FoodOrder.cheesestix(csxDesc: menuDictionary[myItem]?.desc ?? " ", csxPrc: menuDictionary[myItem]?.price ?? 0))
+            print(myCSX.printOrder())
+        case "Soda C", "Soda RB", "Soda S":
+            var mySoda = itemsOrdered2(itemOrdered: FoodOrder.softdrink(sdDesc: menuDictionary[myItem]?.desc ?? " ", sdPrc: menuDictionary[myItem]?.price ?? 0))
+            print(mySoda.printOrder())
+//        case "Soda RB":
+//            var myOR = itemsOrdered2(itemOrdered: FoodOrder.softdrink(orDesc: myItem, orPrc: menuDictionary[myItem]?.price ?? 0))
+//            print(myOR.printOrder())
+//        case "Soda S":
+//            var myOR = itemsOrdered2(itemOrdered: FoodOrder.softdring(orDesc: myItem, orPrc: menuDictionary[myItem]?.price ?? 0))
+//            print(myOR.printOrder())
+        case "Chicken Sandwich":
+            var myCS = itemsOrdered2(itemOrdered: FoodOrder.chickensandwich(csDesc: menuDictionary[myItem]?.desc ?? " ", csPrc: menuDictionary[myItem]?.price ?? 0))
+            print(myCS.printOrder())
+        case "Gyro Meal Deal":
+            var myGY = itemsOrdered2(itemOrdered: FoodOrder.gyro(gDesc: menuDictionary[myItem]?.desc ?? " ", gPrc: menuDictionary[myItem]?.price ?? 0))
+            print(myGY.printOrder())
+        case "Burger - Bacon":
+            var myBur = itemsOrdered2(itemOrdered: FoodOrder.burger(burger: myItem))
+            print(myBur.printOrder())
+        default:
+            print("goodbye")
+            
+        }
+        
+    } else {
+        print("Sorry... input item requested not found on current menu: \(myItem)")
+    }
+    
+}
+
+placeMyOrder(item: "French Fries")
+placeMyOrder(item: "Onion Rings")
+placeMyOrder(item: "Soda C")
+placeMyOrder(item: "Chicken Sandwich")
 
 struct burgerOrdered {
     
@@ -93,52 +228,62 @@ struct itemsOrdered {
     
     var itemOrdered: FoodOrder
     
-    
     var testMsg2: String {
+        printOrder()
         return "Thank you for ordering! \(itemOrdered)"
     }
-    
-    
     
     func printOrder() {
         
         switch itemOrdered {
+        
         case .burger(_):
             print("nice burger")
-        case .frenchfries(_, _):
-            print("nice fries")
-        case .softdrink(_, _, _):
-            print("nice soda")
+        case .frenchfries(let ffdesc, let ffprc):
+            print("nice french fries")
+        case .softdrink(_, _):
+            print("nice soft drink")
         case .chickensandwich(_, _):
-            print("nice chicken sandwich")
-        case .gyro(_, _):
+            print("nice chickensandwich")
+        case .gyro(let gdesc, let gprc):
             print("nice gyro")
+            print("Thank you for ordering: \(gdesc) at \(gprc)")
         case .onionrings(_, _):
             print("nice onion rings")
-        case .cheesestix(_, _):
+        case .cheesestix(let csdesc, let csprc):
             print("nice cheesestix")
         }
     }
     
     
 }
-var cs = menuDictionary["Cheese Stix"]
-var kamcsdesc = cs?.desc
-var kamcsprc = cs?.price
-var item = itemsOrdered(itemOrdered: FoodOrder.cheesestix(csdesc: kamcsdesc ?? " ", csprc: kamcsprc ?? 0))
-print("\n**** item: \(item)")
-
-print("\n\n\(menuDictionary)")
-var kamTestOrder1 = menuDictionary["French Fries"]
-print(kamTestOrder1)
-
-var ffdesc = kamTestOrder1?.desc
-print(ffdesc)
-var ffprc = kamTestOrder1?.price
-print(ffprc)
 
 
 
+
+
+////********************
+//var kamMyItems = itemsOrdered(itemOrdered: FoodOrder.gyro(gDesc: menuDictionary["Gyro Meal Deal"]?.desc ?? " ", gPrc: menuDictionary["Gyro Meal Deal"]?.price ?? 0))
+//print(kamMyItems.testMsg2)
+////********************
+//
+//var cs = menuDictionary["Cheese Stix"]
+//var kamcsdesc = cs?.desc
+//var kamcsprc = cs?.price
+//var item = itemsOrdered(itemOrdered: FoodOrder.cheesestix(csDesc: kamcsdesc ?? " ", csPrc: kamcsprc ?? 0))
+//print("\n**** item: \(item)")
+//
+//print("\n\n\(menuDictionary)")
+//var kamTestOrder1 = menuDictionary["French Fries"]
+//print(kamTestOrder1)
+//
+//var ffdesc = kamTestOrder1?.desc
+//print(ffdesc)
+//var ffprc = kamTestOrder1?.price
+//print(ffprc)
+//
+//
+//
 
 
 
@@ -153,18 +298,18 @@ print(ffprc)
 
 //var orderLineItem = cheeseBurger
 //var orderLineItem = burger
+//
+//let taxRateE = 0.075
+//
+//var itemOrderedE: String = ""
+//var itemPriceE: Double = 0.00
+//var tipCalculatedE: Double = 0
+//var tipCalculated2E: Double = 0
+//var taxCalculatedE: Double = 0
+//var orderAmtE: Double = 0
+//var totalOrderAmtE: Double = 0
+//
 
-let taxRateE = 0.075
-
-var itemOrderedE: String = ""
-var itemPriceE: Double = 0.00
-var tipCalculatedE: Double = 0
-var tipCalculated2E: Double = 0
-var taxCalculatedE: Double = 0
-var orderAmtE: Double = 0
-var totalOrderAmtE: Double = 0
-    
-    
 //func orderedLineItem(
 //
 //.. I don't understand how to pass enum data into a function and then call it :(
@@ -198,10 +343,10 @@ var totalOrderAmtE: Double = 0
 //        orderAmtE += itemPrice
 //    }
 //}
-
-print(".............................................................................................................")
-print("Items ordered off the menu today include:\n")
-
+//
+//print(".............................................................................................................")
+//print("Items ordered off the menu today include:\n")
+//
 
 
 //orderLineItem = cheeseBurger
@@ -221,37 +366,37 @@ print("Items ordered off the menu today include:\n")
 //orderLineItem = FoodOrder.softdrink("*** FREE SOFT DRINK WITH PURCHASE ***", "Dr. Pepper", 0.0)
 //printMenuItemOrdered()
 
-taxCalculatedE = orderAmtE * taxRateE
-tipCalculatedE = orderAmtE * 0.20
-//..if calculating as a number and not converting to string
-//tipCalculated2 = round(orderAmt * 0.20 * 100)/100
-
-totalOrderAmtE = orderAmtE + taxCalculatedE + tipCalculatedE
-
-print(".............................................................................................................")
-//print("\nSubtotal order amount without tax and tip = \t$\(orderAmt)")
-//.. formatted better
-print("\nSubtotal order amount without tax and tip = \t$\(String(format: "%.2f", orderAmtE))")
-
-print(".............................................................................................................")
-//print("Tax calculated at rate of \(taxRate) = \t\t\t\t$\(taxCalculated)")
-//.. formatted better
-print("Tax calculated at rate of \(taxRateE) = \t\t\t\t$\(String(format: "%.2f", taxCalculatedE))")
-
-print(".............................................................................................................")
-//print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated)")
-//print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated2)")
-//.. formatted better
-print("Tip calculated at 20% = \t\t\t\t\t\t$\(String(format: "%.2f", tipCalculatedE))")
-
-print(".............................................................................................................")
-print("The total amount for this order with tax and tip included: ")
-//print("\t\t--> $\(totalOrderAmt)")
-//.. formatted better
-print("\t\t    *****************")
-print("\t\t--> ***   $\(String(format: "%.2f", totalOrderAmtE))")
-print("\t\t    *****************")
-
+//taxCalculatedE = orderAmtE * taxRateE
+//tipCalculatedE = orderAmtE * 0.20
+////..if calculating as a number and not converting to string
+////tipCalculated2 = round(orderAmt * 0.20 * 100)/100
+//
+//totalOrderAmtE = orderAmtE + taxCalculatedE + tipCalculatedE
+//
+//print(".............................................................................................................")
+////print("\nSubtotal order amount without tax and tip = \t$\(orderAmt)")
+////.. formatted better
+//print("\nSubtotal order amount without tax and tip = \t$\(String(format: "%.2f", orderAmtE))")
+//
+//print(".............................................................................................................")
+////print("Tax calculated at rate of \(taxRate) = \t\t\t\t$\(taxCalculated)")
+////.. formatted better
+//print("Tax calculated at rate of \(taxRateE) = \t\t\t\t$\(String(format: "%.2f", taxCalculatedE))")
+//
+//print(".............................................................................................................")
+////print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated)")
+////print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated2)")
+////.. formatted better
+//print("Tip calculated at 20% = \t\t\t\t\t\t$\(String(format: "%.2f", tipCalculatedE))")
+//
+//print(".............................................................................................................")
+//print("The total amount for this order with tax and tip included: ")
+////print("\t\t--> $\(totalOrderAmt)")
+////.. formatted better
+//print("\t\t    *****************")
+//print("\t\t--> ***   $\(String(format: "%.2f", totalOrderAmtE))")
+//print("\t\t    *****************")
+//
 
 ////.. Same thing but using a 2D Array instead
 ////
