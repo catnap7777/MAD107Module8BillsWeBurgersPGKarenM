@@ -89,31 +89,95 @@ enum BurgerType {
 
 struct itemsOrdered2 {
     
-    var itemOrdered: FoodOrder
-    
+    var itemOrder: FoodOrder
     
     var testMsg2: String {
         //printOrder()
-        return "Thank you for ordering! \(itemOrdered)"
+        return "Thank you for ordering! \(itemOrder)"
     }
-    
-    
     
     func printOrder() {
 
-        switch itemOrdered {
-
+        switch itemOrder {
         case .burger(let burger):
             print("nice burger = \(burger)")
+            
+            var myBurger = burgersOrdered(burgerKey: burger).printBurger()
+            //printBurger()
+            
+            
+            //var myCSX = itemsOrdered2(itemOrder: FoodOrder.cheeseStix(csxDesc: menuDictionary[myItem]?.desc ?? " ", csxPrc: menuDictionary[myItem]?.price ?? 0))
+//            var myBurger = burgersOrdered(burgerOrder: "Burger", burgerType: "Burger", burgerDesc: burger, burgerPrice: menuDictionary[burger]?.price ?? 0)
+            
         case .frenchFries(let desc, let prc), .chickenSandwich(let desc, let prc), .softDrink(let desc, let prc),
              .gyro(let desc, let prc), .onionRings(let desc, let prc), .cheeseStix(let desc, let prc):
 
             //print("nice french fries")
             //print("Item: \(ffDesc) Price: \(ffPrc)")
             print("Item -->: \(desc) Price: \(prc)")
-
         }
     }
+}
+
+struct burgersOrdered {
+    
+    //var burgerOrder: BurgerType
+    
+//    var burgerType: String
+    var burgerKey: String
+    
+    
+//    var burgerPrice: Double
+    
+//    var testMsg: String {
+//        return "Excellent choice btw ordering a \(burgerType): \(burgerDesc)"
+//    }
+    
+//    func getBurger(key: String) {
+//
+//        var burgerDesc = BurgerType.baconBurger(type: "who knows if this will work", desc: "i'm going to cry", price: 0)
+//        printBurger()
+//    }
+    
+    func printBurger() {
+        
+        var burgerDesc = BurgerType.baconBurger(type: "Burger", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+        
+        switch burgerDesc {
+            
+//        case .burger(let burger):
+//            print("nice burger = \(burger)")
+//            var myBurger = burgerOrder(burgerType: "Burger", burgerDesc: burger, burgerPrice: menuDictionary[burger]?.price ?? 0)
+//
+//        case .frenchFries(let desc, let prc), .chickenSandwich(let desc, let prc), .softDrink(let desc, let prc),
+//             .gyro(let desc, let prc), .onionRings(let desc, let prc), .cheeseStix(let desc, let prc):
+//
+//            //print("nice french fries")
+//            //print("Item: \(ffDesc) Price: \(ffPrc)")
+//            print("Item -->: \(desc) Price: \(prc)")
+        case .baconBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+            print("\t *** Oh baby! If you love bacon, you're going to love this! ***")
+        case .mushroomSwissBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .veggieBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .americanBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .bbqBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .blueCheeseBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .jalapenoBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .pizzaBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        case .everythingBurger(let type, let desc, let price):
+            print("\(type): \(desc) Price: \(price)")
+        }
+    }
+}
+
     
 //    func printOrder() {
 //
@@ -141,8 +205,7 @@ struct itemsOrdered2 {
     
     
     
-    
-}
+
 
 
 func placeMyOrder (item: String) {
@@ -162,18 +225,18 @@ func placeMyOrder (item: String) {
         case "French Fries":
             //print("French Fries")
             //var myFF = itemsOrdered2(itemOrdered: FoodOrder.frenchfries(ffDesc: "wfh", ffPrc: 99))
-            var myFF = itemsOrdered2(itemOrdered: FoodOrder.frenchFries(ffDesc: menuDictionary[myItem]?.desc ?? " ", ffPrc: menuDictionary[myItem]?.price ?? 0))
+            var myFF = itemsOrdered2(itemOrder: FoodOrder.frenchFries(ffDesc: menuDictionary[myItem]?.desc ?? " ", ffPrc: menuDictionary[myItem]?.price ?? 0))
             //print(myFF.testMsg2)
             print(myFF.printOrder())
         case "Onion Rings":
             //print("Onion Rings")
-            var myOR = itemsOrdered2(itemOrdered: FoodOrder.onionRings(orDesc: menuDictionary[myItem]?.desc ?? " ", orPrc: menuDictionary[myItem]?.price ?? 0))
+            var myOR = itemsOrdered2(itemOrder: FoodOrder.onionRings(orDesc: menuDictionary[myItem]?.desc ?? " ", orPrc: menuDictionary[myItem]?.price ?? 0))
             print(myOR.printOrder())
         case "Cheese Stix":
-            var myCSX = itemsOrdered2(itemOrdered: FoodOrder.cheeseStix(csxDesc: menuDictionary[myItem]?.desc ?? " ", csxPrc: menuDictionary[myItem]?.price ?? 0))
+            var myCSX = itemsOrdered2(itemOrder: FoodOrder.cheeseStix(csxDesc: menuDictionary[myItem]?.desc ?? " ", csxPrc: menuDictionary[myItem]?.price ?? 0))
             print(myCSX.printOrder())
         case "Soda C", "Soda RB", "Soda S":
-            var mySoda = itemsOrdered2(itemOrdered: FoodOrder.softDrink(sdDesc: menuDictionary[myItem]?.desc ?? " ", sdPrc: menuDictionary[myItem]?.price ?? 0))
+            var mySoda = itemsOrdered2(itemOrder: FoodOrder.softDrink(sdDesc: menuDictionary[myItem]?.desc ?? " ", sdPrc: menuDictionary[myItem]?.price ?? 0))
             print(mySoda.printOrder())
 //        case "Soda RB":
 //            var myOR = itemsOrdered2(itemOrdered: FoodOrder.softdrink(orDesc: myItem, orPrc: menuDictionary[myItem]?.price ?? 0))
@@ -182,13 +245,13 @@ func placeMyOrder (item: String) {
 //            var myOR = itemsOrdered2(itemOrdered: FoodOrder.softdring(orDesc: myItem, orPrc: menuDictionary[myItem]?.price ?? 0))
 //            print(myOR.printOrder())
         case "Chicken Sandwich":
-            var myCS = itemsOrdered2(itemOrdered: FoodOrder.chickenSandwich(csDesc: menuDictionary[myItem]?.desc ?? " ", csPrc: menuDictionary[myItem]?.price ?? 0))
+            var myCS = itemsOrdered2(itemOrder: FoodOrder.chickenSandwich(csDesc: menuDictionary[myItem]?.desc ?? " ", csPrc: menuDictionary[myItem]?.price ?? 0))
             print(myCS.printOrder())
         case "Gyro Meal Deal":
-            var myGY = itemsOrdered2(itemOrdered: FoodOrder.gyro(gDesc: menuDictionary[myItem]?.desc ?? " ", gPrc: menuDictionary[myItem]?.price ?? 0))
+            var myGY = itemsOrdered2(itemOrder: FoodOrder.gyro(gDesc: menuDictionary[myItem]?.desc ?? " ", gPrc: menuDictionary[myItem]?.price ?? 0))
             print(myGY.printOrder())
         case "Burger - Bacon":
-            var myBur = itemsOrdered2(itemOrdered: FoodOrder.burger(burger: myItem))
+            var myBur = itemsOrdered2(itemOrder: FoodOrder.burger(burger: myItem))
             print(myBur.printOrder())
         default:
             print("goodbye")
@@ -201,58 +264,58 @@ func placeMyOrder (item: String) {
     
 }
 
-placeMyOrder(item: "French Fries")
-placeMyOrder(item: "Onion Rings")
-placeMyOrder(item: "Soda C")
-placeMyOrder(item: "Chicken Sandwich")
+//placeMyOrder(item: "French Fries")
+//placeMyOrder(item: "Onion Rings")
+//placeMyOrder(item: "Soda C")
+//placeMyOrder(item: "Chicken Sandwich")
 placeMyOrder(item: "Burger - Bacon")
 
-struct burgerOrdered {
-    
-    var burgerType: String
-    var burgerDesc: String
-    var burgerPrice: Double
-    
-    var testMsg: String {
-        return "Excellent choice btw ordering a \(burgerType): \(burgerDesc)"
-        
-    }
-}
+//struct burgerOrdered {
+//
+//    var burgerType: String
+//    var burgerDesc: String
+//    var burgerPrice: Double
+//
+//    var testMsg: String {
+//        return "Excellent choice btw ordering a \(burgerType): \(burgerDesc)"
+//
+//    }
+//}
 
-struct itemsOrdered {
-    
-    var itemOrdered: FoodOrder
-    
-    var testMsg2: String {
-        printOrder()
-        return "Thank you for ordering! \(itemOrdered)"
-    }
-    
-    func printOrder() {
-        
-        switch itemOrdered {
-        
-        case .burger(_):
-            print("nice burger")
-        case .frenchFries(let ffdesc, let ffprc):
-            print("nice french fries")
-        case .softDrink(_, _):
-            print("nice soft drink")
-        case .chickenSandwich(_, _):
-            print("nice chickensandwich")
-        case .gyro(let gdesc, let gprc):
-            print("nice gyro")
-            print("Thank you for ordering: \(gdesc) at \(gprc)")
-        case .onionRings(_, _):
-            print("nice onion rings")
-        case .cheeseStix(let csdesc, let csprc):
-            print("nice cheesestix")
-        }
-    }
-    
-    
-}
-
+//struct itemsOrdered {
+//
+//    var itemOrdered: FoodOrder
+//
+//    var testMsg2: String {
+//        printOrder()
+//        return "Thank you for ordering! \(itemOrdered)"
+//    }
+//
+//    func printOrder() {
+//
+//        switch itemOrdered {
+//
+//        case .burger(_):
+//            print("nice burger")
+//        case .frenchFries(let ffdesc, let ffprc):
+//            print("nice french fries")
+//        case .softDrink(_, _):
+//            print("nice soft drink")
+//        case .chickenSandwich(_, _):
+//            print("nice chickensandwich")
+//        case .gyro(let gdesc, let gprc):
+//            print("nice gyro")
+//            print("Thank you for ordering: \(gdesc) at \(gprc)")
+//        case .onionRings(_, _):
+//            print("nice onion rings")
+//        case .cheeseStix(let csdesc, let csprc):
+//            print("nice cheesestix")
+//        }
+//    }
+//
+//
+//}
+//
 
 
 
