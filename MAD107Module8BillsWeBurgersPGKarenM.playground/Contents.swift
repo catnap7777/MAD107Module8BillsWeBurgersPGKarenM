@@ -141,6 +141,12 @@ struct burgersOrdered {
     
     func printBurger() {
         
+//        if burgerKey == "Burger - Bacon" {
+//            var burgerDesc = BurgerType.baconBurger(type: "Burger TEST", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+//        }
+//
+//        var burgerDesc2 = burgerDesc
+        
         var burgerDesc = BurgerType.baconBurger(type: "Burger", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         
         switch burgerDesc {
@@ -174,6 +180,8 @@ struct burgersOrdered {
             print("\(type): \(desc) Price: \(price)")
         case .everythingBurger(let type, let desc, let price):
             print("\(type): \(desc) Price: \(price)")
+        default:
+            print("No Burgers Ordered")
         }
     }
 }
