@@ -6,9 +6,9 @@ var str = "Hello, playground"
 //..   the order cost, the tax, the tip, and the total cost to the user
 
 
-print("*************************************************************************************************************")
-print("********                              Bill's Amazing WeBurgers                                       ********")
-print("*************************************************************************************************************")
+print("\n****************************************************************************************************************************************************")
+print("********                                                    Bill's Amazing WeBurgers                                                        ********")
+print("****************************************************************************************************************************************************")
 
 
 
@@ -33,6 +33,17 @@ var menuDictionary = ["French Fries": (price: 12.25, desc: "Super Deluxe French 
                       "Burger - Pizza": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Mozarella Cheese, Lettuce, and our Fantastic Pizza Sauce"),
                       "Burger - Everything": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Apple Roasted Bacon, Cheddar Cheese, Lettuce, Tomato, Pickles, and Whatever Else You Want!")
 ]
+
+let taxRateE = 0.075
+
+var itemOrderedE: String = ""
+var itemPriceE: Double = 0.00
+var tipCalculatedE: Double = 0
+var tipCalculated2E: Double = 0
+var taxCalculatedE: Double = 0
+var orderAmtE: Double = 0
+var totalOrderAmtE: Double = 0
+
 
 enum FoodOrder {
     case burger(burger: String)
@@ -74,8 +85,10 @@ struct itemsOrdered2 {
         case .frenchFries(let desc, let prc), .chickenSandwich(let desc, let prc), .softDrink(let desc, let prc),
              .gyro(let desc, let prc), .onionRings(let desc, let prc), .cheeseStix(let desc, let prc):
 
-            print("Item -->: \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
             
+            //$\(String(format: "%.2f", itemPrice))")
         }
     }
 }
@@ -96,46 +109,57 @@ struct burgersOrdered {
         case "Burger - Veggie":
             burgerDesc = BurgerType.veggieBurger(type: "Burger/Veggie", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - American":
-            burgerDesc = BurgerType.americanBurger(type: "Burger/Amer", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.americanBurger(type: "Burger/American", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - BBQ":
             burgerDesc = BurgerType.bbqBurger(type: "Burger/BBQ", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Blue Cheese":
             burgerDesc = BurgerType.blueCheeseBurger(type: "Burger/BlueCh", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Japaleno":
-            burgerDesc = BurgerType.jalapenoBurger(type: "Burger/Japa", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.jalapenoBurger(type: "Burger/Japaleno", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Pizza":
             burgerDesc = BurgerType.pizzaBurger(type: "Burger/Pizza", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Everything":
-            burgerDesc = BurgerType.everythingBurger(type: "Burger/Every", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.everythingBurger(type: "Burger/Everything", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         default:
-            print("*** Error: Burger Not on Menu ***")
+            print("\n*** Error: Burger Not on Menu ***")
         }
 
         switch burgerDesc {
 
         case .baconBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             print("\t\t\t *** Oh baby! If you love bacon, you're going to love this! ***")
+            orderAmtE += prc
         case .mushroomSwissBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
         case .veggieBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
         case .americanBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
         case .bbqBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
         case .blueCheeseBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
         case .jalapenoBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            print("\t\t\t *** HOT!!! HOT!!! HOT!!! ***")
+            orderAmtE += prc
         case .pizzaBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: \(prc)")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
+            orderAmtE += prc
             print("\t\t\t *** Who needs pizza when you can have this!!! ***")
         case .everythingBurger(let type, let desc, let prc):
-            print("Item -->: \(type): \(desc) @@@ Price: $2.75")
+            print("\nItem -->: \(type): \(desc) @@@ Price: $2.75")  //$\(String(format: "%.2f", prc))
+            //orderAmtE += prc
+            orderAmtE += 2.75
             print("\t\t\t *** On special today for $2.75 each ***")
         default:
-            print("No Burgers Ordered")
+            print("\nNo Burgers Ordered")
         }
     }
 }
@@ -176,9 +200,50 @@ func placeMyOrder (item: String) {
         }
         
     } else {
-        print("*Error->: \(myItem) -> Item requested not found on current menu *")
+        print("\n*Error->: \(myItem) -> Item requested not found on current menu *")
     }
     
+}
+
+func calcTotals() {
+    
+    taxCalculatedE = orderAmtE * taxRateE
+    tipCalculatedE = orderAmtE * 0.20
+    //..if calculating as a number and not converting to string
+    //tipCalculated2 = round(orderAmt * 0.20 * 100)/100
+
+    totalOrderAmtE = orderAmtE + taxCalculatedE + tipCalculatedE
+    
+    print("\n****************************************************************************************************************************************************")
+    print("********                                                               TOTALS                                                               ********")
+    print("****************************************************************************************************************************************************")
+
+
+    print(".............................................................................................................")
+    //print("\nSubtotal order amount without tax and tip = \t$\(orderAmt)")
+    //.. formatted better
+    print("\nSubtotal order amount without tax and tip = \t$\(String(format: "%.2f", orderAmtE))")
+
+    print(".............................................................................................................")
+    //print("Tax calculated at rate of \(taxRate) = \t\t\t\t$\(taxCalculated)")
+    //.. formatted better
+    print("Tax calculated at rate of \(taxRateE) = \t\t\t\t$\(String(format: "%.2f", taxCalculatedE))")
+
+    print(".............................................................................................................")
+    //print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated)")
+    //print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated2)")
+    //.. formatted better
+    print("Tip calculated at 20% = \t\t\t\t\t\t$\(String(format: "%.2f", tipCalculatedE))")
+
+    print(".............................................................................................................")
+    print("The total amount for this order with tax and tip included: ")
+    //print("\t\t--> $\(totalOrderAmt)")
+    //.. formatted better
+    print("\t\t\t    *****************")
+    print("\t\t\t--> ***   $\(String(format: "%.2f", totalOrderAmtE))")
+    print("\t\t\t    *****************")
+
+
 }
 
 placeMyOrder(item: "French Fries")
@@ -189,8 +254,12 @@ placeMyOrder(item: "7up")
 placeMyOrder(item: "Chicken Sandwich")
 placeMyOrder(item: "Burger - Pizza")
 placeMyOrder(item: "Burger - Bacon")
+placeMyOrder(item: "Burger - Japaleno")
+placeMyOrder(item: "Cheese Stix")
+placeMyOrder(item: "Burger - Mushroom Swiss")
 placeMyOrder(item: "Burger - Everything")
 placeMyOrder(item: "Burger - Bean")
+calcTotals()
 
 
 //let taxRateE = 0.075
