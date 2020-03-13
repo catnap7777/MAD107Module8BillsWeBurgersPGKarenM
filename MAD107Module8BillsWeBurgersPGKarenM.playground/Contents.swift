@@ -10,13 +10,13 @@ print("********                                                    Bill's Amazin
 print("****************************************************************************************************************************************************")
 
 //.. Approved Menu Items
-var menuDictionary = ["French Fries": (price: 12.25, desc: "Super Deluxe French Fries"),
+var menuDictionary = ["French Fries": (price: 2.25, desc: "Super Deluxe French Fries"),
                       "Onion Rings": (price: 2.50, desc: "Onion Rings"),
                       "Cheese Stix":(price: 1.25, desc: "Cheese Stix"),
-                      "Soda C":(price: 1.00, desc: "Coke"),
-                      "Soda RB":(price:1.00, desc: "Root Beer"),
-                      "Soda S":(price:1.00, desc: "Sprite"),
-                      "Chicken Sandwich":(price:3.25, desc: "Chicken Sandwich with Mayo, Lettuce, Tomato, and Chipotle Sauce"),
+                      "Soda C":(price: 1.25, desc: "Coke"),
+                      "Soda RB":(price:1.25, desc: "Root Beer"),
+                      "Soda S":(price:1.25, desc: "Sprite"),
+                      "Chicken Sandwich":(price:3.75, desc: "Chicken Sandwich with Mayo, Lettuce, Tomato, and Chipotle Sauce"),
                       "Gyro Meal Deal":(price:5.25, desc: "Gyro with French Fries and Homemade Coleslaw"),
                       //"Burger - Bacon": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Apple Roasted Bacon, Cheddar Cheese, and Mushrooms"),
                       "Burger - Bacon": (price: 4.75, desc: nil),
@@ -37,7 +37,7 @@ var taxCalculatedE: Double = 0
 var orderAmtE: Double = 0
 var totalOrderAmtE: Double = 0
 
-
+//..enum for food items other than burgers
 enum FoodOrder {
     case burger(burger: String)
     case frenchFries(desc: String, price: Double)
@@ -47,7 +47,7 @@ enum FoodOrder {
     case onionRings(desc: String, price: Double)
     case cheeseStix(desc: String, price: Double)
 }
-
+//..enum for burgers
 enum BurgerType {
     case baconBurger(type: String , desc: String, price: Double )
     case mushroomSwissBurger(type: String , desc: String, price: Double )
@@ -59,8 +59,9 @@ enum BurgerType {
     case pizzaBurger(type: String , desc: String, price: Double )
     case everythingBurger(type: String , desc: String, price: Double )
 }
-
-struct itemsOrdered2 {
+//................................................................................................................................................
+//.. structure for ordering food/drinks
+struct itemsOrdered {
     
     var itemOrder: FoodOrder
     
@@ -70,7 +71,7 @@ struct itemsOrdered2 {
     }
     
     func printOrder() {
-
+        //.. switch to see what kind of food was ordered (burger or other items); instantiate myBurger if it was a burger OR set up enum object by referencing main menuDictionary to print out other food items
         switch itemOrder {
         case .burger(let burger):
             var myBurger = burgersOrdered(burgerKey: burger).printBurger()
@@ -85,15 +86,18 @@ struct itemsOrdered2 {
         }
     }
 }
-
+//................................................................................................................................................
+//.. structure for ordering burgers
 struct burgersOrdered {
    
     var burgerKey: String
     
     func printBurger() {
         
+        //.. initialization of burgerDesc
         var burgerDesc = BurgerType.baconBurger(type: "Initialized", desc: "* No Desc -> new burger? *", price: 0)
         
+        //.. switch to see what kind of burger was ordered and then set up enum object by referencing main menuDictionary
         switch burgerKey {
         case "Burger - Bacon":
             burgerDesc = BurgerType.baconBurger(type: "Burger/Bacon", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
@@ -117,6 +121,7 @@ struct burgersOrdered {
             print("\n*** Error: Burger Not on Menu ***")
         }
 
+        //.. switch to see which enum burger is ordered and used to print line item infomation
         switch burgerDesc {
 
         case .baconBurger(let type, let desc, let prc):
@@ -156,37 +161,39 @@ struct burgersOrdered {
         }
     }
 }
-
+//................................................................................................................................................
+//.. main function called when placing an order
 func placeMyOrder (item: String) {
     
     let myItem = item
     let myMenu = menuDictionary
     //var itemFound = myMenu.keys.contains(item)
     
+    //.. determine if the item (string) ordered is even in the menuDictionary
     if myMenu.keys.contains(myItem) {
     
         switch myItem {
         case "French Fries":
-            let myFF = itemsOrdered2(itemOrder: FoodOrder.frenchFries(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myFF = itemsOrdered(itemOrder: FoodOrder.frenchFries(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myFF.printOrder()
         case "Onion Rings":
-            let myOR = itemsOrdered2(itemOrder: FoodOrder.onionRings(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myOR = itemsOrdered(itemOrder: FoodOrder.onionRings(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myOR.printOrder()
         case "Cheese Stix":
-            let myCSX = itemsOrdered2(itemOrder: FoodOrder.cheeseStix(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myCSX = itemsOrdered(itemOrder: FoodOrder.cheeseStix(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
            myCSX.printOrder()
         case "Soda C", "Soda RB", "Soda S":
-            let mySoda = itemsOrdered2(itemOrder: FoodOrder.softDrink(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let mySoda = itemsOrdered(itemOrder: FoodOrder.softDrink(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             mySoda.printOrder()
         case "Chicken Sandwich":
-            let myCS = itemsOrdered2(itemOrder: FoodOrder.chickenSandwich(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myCS = itemsOrdered(itemOrder: FoodOrder.chickenSandwich(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myCS.printOrder()
         case "Gyro Meal Deal":
-            let myGY = itemsOrdered2(itemOrder: FoodOrder.gyro(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myGY = itemsOrdered(itemOrder: FoodOrder.gyro(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myGY.printOrder()
         case "Burger - Bacon", "Burger - Mushroom Swiss", "Burger - Veggie", "Burger - American",
              "Burger - BBQ", "Burger - Blue Cheese", "Burger - Japaleno", "Burger - Pizza", "Burger - Everything":
-            let myBur = itemsOrdered2(itemOrder: FoodOrder.burger(burger: myItem))
+            let myBur = itemsOrdered(itemOrder: FoodOrder.burger(burger: myItem))
             myBur.printOrder()
         default:
             print("*** Item not found on current menu. Please try again.")
@@ -197,7 +204,8 @@ func placeMyOrder (item: String) {
     }
     
 }
-
+//................................................................................................................................................
+//.. calculate all order totals and print
 func calcTotals() {
     
     taxCalculatedE = orderAmtE * taxRateE
@@ -235,6 +243,8 @@ func calcTotals() {
 
 }
 
+//................................................................................................................................................
+//.. place the orders for each item desired; at end, calculate receipt totals
 placeMyOrder(item: "French Fries")
 placeMyOrder(item: "Onion Rings")
 placeMyOrder(item: "Soda C")
