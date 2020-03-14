@@ -39,29 +39,29 @@ var totalOrderAmtE: Double = 0
 
 //..enum for food items other than burgers
 enum FoodOrder {
-    case burger(burger: String)
-    case frenchFries(desc: String, price: Double)
-    case softDrink(desc: String, price: Double)
-    case chickenSandwich(desc: String, price: Double)
-    case gyro(desc: String, price: Double)
-    case onionRings(desc: String, price: Double)
-    case cheeseStix(desc: String, price: Double)
+    case Burger(burger: String)
+    case FrenchFries(desc: String, price: Double)
+    case SoftDrink(desc: String, price: Double)
+    case ChickenSandwich(desc: String, price: Double)
+    case Gyro(desc: String, price: Double)
+    case OnionRings(desc: String, price: Double)
+    case CheeseStix(desc: String, price: Double)
 }
 //..enum for burgers
 enum BurgerType {
-    case baconBurger(type: String , desc: String, price: Double )
-    case mushroomSwissBurger(type: String , desc: String, price: Double )
-    case veggieBurger(type: String , desc: String, price: Double )
-    case americanBurger(type: String , desc: String, price: Double )
-    case bbqBurger(type: String , desc: String, price: Double )
-    case blueCheeseBurger(type: String , desc: String, price: Double )
-    case jalapenoBurger(type: String , desc: String, price: Double )
-    case pizzaBurger(type: String , desc: String, price: Double )
-    case everythingBurger(type: String , desc: String, price: Double )
+    case BaconBurger(type: String , desc: String, price: Double )
+    case MushroomSwissBurger(type: String , desc: String, price: Double )
+    case VeggieBurger(type: String , desc: String, price: Double )
+    case AmericanBurger(type: String , desc: String, price: Double )
+    case BbqBurger(type: String , desc: String, price: Double )
+    case BlueCheeseBurger(type: String , desc: String, price: Double )
+    case JalapenoBurger(type: String , desc: String, price: Double )
+    case PizzaBurger(type: String , desc: String, price: Double )
+    case EverythingBurger(type: String , desc: String, price: Double )
 }
 //................................................................................................................................................
 //.. structure for ordering food/drinks
-struct itemsOrdered {
+struct ItemsOrdered {
     
     var itemOrder: FoodOrder
     
@@ -73,11 +73,11 @@ struct itemsOrdered {
     func printOrder() {
         //.. switch to see what kind of food was ordered (burger or other items); instantiate myBurger if it was a burger OR set up enum object by referencing main menuDictionary to print out other food items
         switch itemOrder {
-        case .burger(let burger):
-            var myBurger = burgersOrdered(burgerKey: burger).printBurger()
+        case .Burger(let burger):
+            var myBurger = BurgersOrdered(burgerKey: burger).printBurger()
             
-        case .frenchFries(let desc, let prc), .chickenSandwich(let desc, let prc), .softDrink(let desc, let prc),
-             .gyro(let desc, let prc), .onionRings(let desc, let prc), .cheeseStix(let desc, let prc):
+        case .FrenchFries(let desc, let prc), .ChickenSandwich(let desc, let prc), .SoftDrink(let desc, let prc),
+             .Gyro(let desc, let prc), .OnionRings(let desc, let prc), .CheeseStix(let desc, let prc):
 
             print("\nItem -->: \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
@@ -88,35 +88,35 @@ struct itemsOrdered {
 }
 //................................................................................................................................................
 //.. structure for ordering burgers
-struct burgersOrdered {
+struct BurgersOrdered {
    
     var burgerKey: String
     
     func printBurger() {
         
         //.. initialization of burgerDesc
-        var burgerDesc = BurgerType.baconBurger(type: "Initialized", desc: "* No Desc -> new burger? *", price: 0)
+        var burgerDesc = BurgerType.BaconBurger(type: "Initialized", desc: "* No Desc -> new burger? *", price: 0)
         
         //.. switch to see what kind of burger was ordered and then set up enum object by referencing main menuDictionary
         switch burgerKey {
         case "Burger - Bacon":
-            burgerDesc = BurgerType.baconBurger(type: "Burger/Bacon", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.BaconBurger(type: "Burger/Bacon", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Mushroom Swiss":
-            burgerDesc = BurgerType.mushroomSwissBurger(type: "Burger/MushSW", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.MushroomSwissBurger(type: "Burger/MushSW", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Veggie":
-            burgerDesc = BurgerType.veggieBurger(type: "Burger/Veggie", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.VeggieBurger(type: "Burger/Veggie", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - American":
-            burgerDesc = BurgerType.americanBurger(type: "Burger/American", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.AmericanBurger(type: "Burger/American", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - BBQ":
-            burgerDesc = BurgerType.bbqBurger(type: "Burger/BBQ", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.BbqBurger(type: "Burger/BBQ", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Blue Cheese":
-            burgerDesc = BurgerType.blueCheeseBurger(type: "Burger/BlueCh", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.BlueCheeseBurger(type: "Burger/BlueCh", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Japaleno":
-            burgerDesc = BurgerType.jalapenoBurger(type: "Burger/Japaleno", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.JalapenoBurger(type: "Burger/Japaleno", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Pizza":
-            burgerDesc = BurgerType.pizzaBurger(type: "Burger/Pizza", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.PizzaBurger(type: "Burger/Pizza", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         case "Burger - Everything":
-            burgerDesc = BurgerType.everythingBurger(type: "Burger/Everything", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
+            burgerDesc = BurgerType.EverythingBurger(type: "Burger/Everything", desc: menuDictionary[burgerKey]?.desc ?? "* No Desc *", price: menuDictionary[burgerKey]?.price ?? 0)
         default:
             print("\n*** Error: Burger Not on Menu ***")
         }
@@ -124,34 +124,34 @@ struct burgersOrdered {
         //.. switch to see which enum burger is ordered and used to print line item infomation
         switch burgerDesc {
 
-        case .baconBurger(let type, let desc, let prc):
+        case .BaconBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             print("\t\t\t *** Oh baby! If you love bacon, you're going to love this! ***")
             orderAmtE += prc
-        case .mushroomSwissBurger(let type, let desc, let prc):
+        case .MushroomSwissBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
-        case .veggieBurger(let type, let desc, let prc):
+        case .VeggieBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
-        case .americanBurger(let type, let desc, let prc):
+        case .AmericanBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
-        case .bbqBurger(let type, let desc, let prc):
+        case .BbqBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
-        case .blueCheeseBurger(let type, let desc, let prc):
+        case .BlueCheeseBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
-        case .jalapenoBurger(let type, let desc, let prc):
+        case .JalapenoBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             print("\t\t\t *** HOT!!! HOT!!! HOT!!! ***")
             orderAmtE += prc
-        case .pizzaBurger(let type, let desc, let prc):
+        case .PizzaBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
             print("\t\t\t *** Who needs pizza when you can have this!!! ***")
-        case .everythingBurger(let type, let desc, let prc):
+        case .EverythingBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $2.75")  //$\(String(format: "%.2f", prc))
             //orderAmtE += prc
             orderAmtE += 2.75
@@ -174,26 +174,26 @@ func placeMyOrder (item: String) {
     
         switch myItem {
         case "French Fries":
-            let myFF = itemsOrdered(itemOrder: FoodOrder.frenchFries(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myFF = ItemsOrdered(itemOrder: FoodOrder.FrenchFries(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myFF.printOrder()
         case "Onion Rings":
-            let myOR = itemsOrdered(itemOrder: FoodOrder.onionRings(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myOR = ItemsOrdered(itemOrder: FoodOrder.OnionRings(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myOR.printOrder()
         case "Cheese Stix":
-            let myCSX = itemsOrdered(itemOrder: FoodOrder.cheeseStix(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myCSX = ItemsOrdered(itemOrder: FoodOrder.CheeseStix(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
            myCSX.printOrder()
         case "Soda C", "Soda RB", "Soda S":
-            let mySoda = itemsOrdered(itemOrder: FoodOrder.softDrink(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let mySoda = ItemsOrdered(itemOrder: FoodOrder.SoftDrink(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             mySoda.printOrder()
         case "Chicken Sandwich":
-            let myCS = itemsOrdered(itemOrder: FoodOrder.chickenSandwich(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myCS = ItemsOrdered(itemOrder: FoodOrder.ChickenSandwich(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myCS.printOrder()
         case "Gyro Meal Deal":
-            let myGY = itemsOrdered(itemOrder: FoodOrder.gyro(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
+            let myGY = ItemsOrdered(itemOrder: FoodOrder.Gyro(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             myGY.printOrder()
         case "Burger - Bacon", "Burger - Mushroom Swiss", "Burger - Veggie", "Burger - American",
              "Burger - BBQ", "Burger - Blue Cheese", "Burger - Japaleno", "Burger - Pizza", "Burger - Everything":
-            let myBur = itemsOrdered(itemOrder: FoodOrder.burger(burger: myItem))
+            let myBur = ItemsOrdered(itemOrder: FoodOrder.Burger(burger: myItem))
             myBur.printOrder()
         default:
             print("*** Item not found on current menu. Please try again.")
