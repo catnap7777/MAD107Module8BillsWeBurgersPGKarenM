@@ -19,15 +19,15 @@ var menuDictionary = ["French Fries": (price: 2.25, desc: "Super Deluxe French F
                       "Chicken Sandwich":(price:3.75, desc: "Chicken Sandwich with Mayo, Lettuce, Tomato, and Chipotle Sauce"),
                       "Gyro Meal Deal":(price:5.25, desc: "Gyro with French Fries and Homemade Coleslaw"),
                       //"Burger - Bacon": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Apple Roasted Bacon, Cheddar Cheese, and Mushrooms"),
-                      "Burger - Bacon": (price: 4.75, desc: nil),
-                      "Burger - Mushroom Swiss": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Swiss Cheese and Savory Mushrooms"),
-                      "Burger - Veggie": (price: 4.75, desc: "1/4 lb Premium Veggie Burger with Spicy Mayo, Lettuce, and Tomato"),
-                      "Burger - American": (price: 4.75, desc: "1/4 lb Angus Beef Burger with American Cheese, Lettuce, Tomato, Pickles, and our \"Special Sauce\""),
-                      "Burger - BBQ": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Smokey BBQ Sauce, Lettuce, and Tomato"),
-                      "Burger - Blue Cheese": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Blue Cheese and Ranch, Lettuce, and Tomato"),
-                      "Burger - Japaleno": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Japalenos, PepperJack Cheese, Lettuce, Tomato, and our Spicy \"Salsa\" Sauce"),
-                      "Burger - Pizza": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Mozarella Cheese, Lettuce, and our Fantastic Pizza Sauce"),
-                      "Burger - Everything": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Apple Roasted Bacon, Cheddar Cheese, Lettuce, Tomato, Pickles, and Whatever Else You Want!")
+    "Burger - Bacon": (price: 4.75, desc: nil),
+    "Burger - Mushroom Swiss": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Swiss Cheese and Savory Mushrooms"),
+    "Burger - Veggie": (price: 4.75, desc: "1/4 lb Premium Veggie Burger with Spicy Mayo, Lettuce, and Tomato"),
+    "Burger - American": (price: 4.75, desc: "1/4 lb Angus Beef Burger with American Cheese, Lettuce, Tomato, Pickles, and our \"Special Sauce\""),
+    "Burger - BBQ": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Smokey BBQ Sauce, Lettuce, and Tomato"),
+    "Burger - Blue Cheese": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Blue Cheese and Ranch, Lettuce, and Tomato"),
+    "Burger - Japaleno": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Japalenos, PepperJack Cheese, Lettuce, Tomato, and our Spicy \"Salsa\" Sauce"),
+    "Burger - Pizza": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Mozarella Cheese, Lettuce, and our Fantastic Pizza Sauce"),
+    "Burger - Everything": (price: 4.75, desc: "1/4 lb Angus Beef Burger with Apple Roasted Bacon, Cheddar Cheese, Lettuce, Tomato, Pickles, and Whatever Else You Want!")
 ]
 
 let taxRateE = 0.075
@@ -71,7 +71,6 @@ struct ItemsOrdered {
         //return "Thank you for ordering! \(itemOrder)"
         return "\n\nThank you for ordering! Bill\'s Amazing WeBurgers appreciates your business!"
     }
-
     
     func printOrder() {
         //.. switch to see what kind of food was ordered (burger or other items); instantiate myBurger if it was a burger OR set up enum object by referencing main menuDictionary to print out other food items
@@ -81,7 +80,7 @@ struct ItemsOrdered {
             
         case .FrenchFries(let desc, let prc), .ChickenSandwich(let desc, let prc), .SoftDrink(let desc, let prc),
              .Gyro(let desc, let prc), .OnionRings(let desc, let prc), .CheeseStix(let desc, let prc):
-
+            
             print("\nItem -->: \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             orderAmtE += prc
             
@@ -92,7 +91,7 @@ struct ItemsOrdered {
 //................................................................................................................................................
 //.. structure for ordering burgers
 struct BurgersOrdered {
-   
+    
     var burgerKey: String
     
     func printBurger() {
@@ -123,10 +122,10 @@ struct BurgersOrdered {
         default:
             print("\n*** Error: Burger Not on Menu ***")
         }
-
+        
         //.. switch to see which enum burger is ordered and used to print line item infomation
         switch burgerDesc {
-
+            
         case .BaconBurger(let type, let desc, let prc):
             print("\nItem -->: \(type): \(desc) @@@ Price: $\(String(format: "%.2f", prc))")
             print("\t\t\t *** Oh baby! If you love bacon, you're going to love this! ***")
@@ -174,7 +173,7 @@ func placeMyOrder (item: String) {
     
     //.. determine if the item (string) ordered is even in the menuDictionary
     if myMenu.keys.contains(myItem) {
-    
+        
         switch myItem {
         case "French Fries":
             let myFF = ItemsOrdered(itemOrder: FoodOrder.FrenchFries(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
@@ -184,7 +183,7 @@ func placeMyOrder (item: String) {
             myOR.printOrder()
         case "Cheese Stix":
             let myCSX = ItemsOrdered(itemOrder: FoodOrder.CheeseStix(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
-           myCSX.printOrder()
+            myCSX.printOrder()
         case "Soda C", "Soda RB", "Soda S":
             let mySoda = ItemsOrdered(itemOrder: FoodOrder.SoftDrink(desc: menuDictionary[myItem]?.desc ?? " ", price: menuDictionary[myItem]?.price ?? 0))
             mySoda.printOrder()
@@ -207,10 +206,47 @@ func placeMyOrder (item: String) {
     }
     
 }
+
+class KarenTestClass {
+    
+    init() {
+        var nbr1: Int = 0
+        var nbr2: Int = 4
+        var nbrAdded: Int
+    }
+    
+    
+    func sendAMsg(nbr1: Int, nbr2: Int, nbrAdded: Int) -> String {
+        
+        //        var msg1: String {
+        //            return "You added two numbers together and got a result \(nbr1) + \(nbr2) = \(nbrAdded)"
+        //        }
+        //var msg1: String {
+        return "You added two numbers together and got a result \(nbr1) + \(nbr2) = \(nbrAdded)"
+        //}
+    }
+}
+
+class KarenTestSubclass: KarenTestClass {
+    
+    override func sendAMsg(nbr1: Int, nbr2: Int, nbrAdded: Int) -> String {
+        
+        //        var msg1: String {
+        //            let details = super.sendAMsg(nbr1: 5, nbr2: 7, nbrAdded: 12)
+        //            return "Say what? \(details)"
+        //        }
+        
+        //var msg1: String {
+        let details = super.sendAMsg(nbr1: 5, nbr2: 7, nbrAdded: 12)
+        return "Say what? \(details)"
+        //}
+    }
+}
+
 //................................................................................................................................................
 //.. calculate all order totals and print
 func calcTotals() {
-
+    
     taxCalculatedE = orderAmtE * taxRateE
     tipCalculatedE = orderAmtE * 0.20
     
@@ -219,23 +255,23 @@ func calcTotals() {
     print("\n****************************************************************************************************************************************************")
     print("********                                                               TOTALS                                                               ********")
     print("****************************************************************************************************************************************************")
-
+    
     print(".............................................................................................................")
     //print("\nSubtotal order amount without tax and tip = \t$\(orderAmt)")
     //.. formatted better
     print("\nSubtotal order amount without tax and tip = \t$\(String(format: "%.2f", orderAmtE))")
-
+    
     print(".............................................................................................................")
     //print("Tax calculated at rate of \(taxRate) = \t\t\t\t$\(taxCalculated)")
     //.. formatted better
     print("Tax calculated at rate of \(taxRateE) = \t\t\t\t$\(String(format: "%.2f", taxCalculatedE))")
-
+    
     print(".............................................................................................................")
     //print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated)")
     //print("Tip calculated at 20% = \t\t\t\t\t\t$\(tipCalculated2)")
     //.. formatted better
     print("Tip calculated at 20% = \t\t\t\t\t\t$\(String(format: "%.2f", tipCalculatedE))")
-
+    
     print(".............................................................................................................")
     print("The total amount for this order with tax and tip included: ")
     //print("\t\t--> $\(totalOrderAmt)")
@@ -248,7 +284,7 @@ func calcTotals() {
     print(tempItemsOrdered.testMsg2)
     
     
-   
+    
 }
 
 //................................................................................................................................................
@@ -267,6 +303,16 @@ placeMyOrder(item: "Burger - Mushroom Swiss")
 placeMyOrder(item: "Burger - Everything")
 placeMyOrder(item: "Burger - Bean")
 calcTotals()
+
+
+var x = KarenTestClass()
+print("\n\n")
+print(x.sendAMsg(nbr1: 5, nbr2: 5, nbrAdded: 10))
+
+var y = KarenTestSubclass()
+print("\n\n")
+print(y.sendAMsg(nbr1: 7, nbr2: 7, nbrAdded: 14))
+
 
 
 
