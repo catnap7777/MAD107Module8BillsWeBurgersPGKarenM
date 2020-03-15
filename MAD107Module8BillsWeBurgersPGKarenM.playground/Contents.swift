@@ -65,10 +65,13 @@ struct ItemsOrdered {
     
     var itemOrder: FoodOrder
     
+    //..
     var testMsg2: String {
         //printOrder()
-        return "Thank you for ordering! \(itemOrder)"
+        //return "Thank you for ordering! \(itemOrder)"
+        return "\n\nThank you for ordering! Bill\'s Amazing WeBurgers appreciates your business!"
     }
+
     
     func printOrder() {
         //.. switch to see what kind of food was ordered (burger or other items); instantiate myBurger if it was a burger OR set up enum object by referencing main menuDictionary to print out other food items
@@ -207,7 +210,7 @@ func placeMyOrder (item: String) {
 //................................................................................................................................................
 //.. calculate all order totals and print
 func calcTotals() {
-    
+
     taxCalculatedE = orderAmtE * taxRateE
     tipCalculatedE = orderAmtE * 0.20
     
@@ -240,7 +243,12 @@ func calcTotals() {
     print("\t\t\t    *****************")
     print("\t\t\t--> ***   $\(String(format: "%.2f", totalOrderAmtE))")
     print("\t\t\t    *****************")
-
+    
+    let tempItemsOrdered = ItemsOrdered(itemOrder: FoodOrder.Burger(burger: ""))
+    print(tempItemsOrdered.testMsg2)
+    
+    
+   
 }
 
 //................................................................................................................................................
@@ -259,4 +267,6 @@ placeMyOrder(item: "Burger - Mushroom Swiss")
 placeMyOrder(item: "Burger - Everything")
 placeMyOrder(item: "Burger - Bean")
 calcTotals()
+
+
 
