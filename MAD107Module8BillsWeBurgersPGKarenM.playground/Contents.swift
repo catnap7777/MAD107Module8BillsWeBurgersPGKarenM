@@ -5,9 +5,9 @@ var str = "Hello, playground"
 //.. This playground program uses hard coded menu item values from a dictionary, enums, functions, and structures... and calculates
 //..   the order cost, the tax, the tip, and the total cost to the user
 
-print("\n****************************************************************************************************************************************************")
-print("********                                                    Bill's Amazing WeBurgers                                                        ********")
-print("****************************************************************************************************************************************************")
+//print("\n****************************************************************************************************************************************************")
+//print("********                                                    Bill's Amazing WeBurgers                                                        ********")
+//print("****************************************************************************************************************************************************")
 
 //.. Approved Menu Items
 var menuDictionary = ["French Fries": (price: 2.25, desc: "Super Deluxe French Fries"),
@@ -210,26 +210,49 @@ func placeMyOrder (item: String) {
 class KarenTestClass {
     
     init() {
-        var nbr1: Int = 0
-        var nbr2: Int = 4
+        var nbr1: Int = 98
+        var nbr2: Int = 99
         var nbrAdded: Int
     }
+
     
-    
-    func sendAMsg(nbr1: Int, nbr2: Int, nbrAdded: Int) -> String {
+    func sendAMsg(nbr1: Int, nbr2: Int?, nbrAdded: Int) -> String {
+        
+        var nbr3 = 0
+        var nbrAdded2 = 0
+        
+        print("nbr1 initially ... \(nbr1)")
+        print("nbr2 initially ... \(nbr2 ?? 77)")
+        print("nbr3 initially ... \(nbr3)")
+        print("nbrAdded initially ... \(nbrAdded)")
+        
+        if var nbr2test = nbr2 {
+            nbr3 = nbr2test
+            nbrAdded2 = nbrAdded
+            print("nbr3 is NOT nil coming in... nbr3 = \(nbr3)")
+            
+        } else {
+            nbr3 = 1000
+            nbrAdded2 = nbr3 + nbr1
+            print("nbr3 was initially nil, so set it to...nbr3 = \(nbr3)")
+            
+        }
+        
+        print("nbr3 right now: \(nbr3)")
+        
         
         //        var msg1: String {
         //            return "You added two numbers together and got a result \(nbr1) + \(nbr2) = \(nbrAdded)"
         //        }
         //var msg1: String {
-        return "You added two numbers together and got a result \(nbr1) + \(nbr2) = \(nbrAdded)"
+        return "You added two numbers together and got a result \(nbr1) + \(nbr3) = \(nbrAdded2)"
         //}
     }
 }
 
 class KarenTestSubclass: KarenTestClass {
     
-    override func sendAMsg(nbr1: Int, nbr2: Int, nbrAdded: Int) -> String {
+    override func sendAMsg(nbr1: Int, nbr2: Int?, nbrAdded: Int) -> String {
         
         //        var msg1: String {
         //            let details = super.sendAMsg(nbr1: 5, nbr2: 7, nbrAdded: 12)
@@ -289,29 +312,35 @@ func calcTotals() {
 
 //................................................................................................................................................
 //.. place the orders for each item desired; at end, calculate receipt totals
-placeMyOrder(item: "French Fries")
-placeMyOrder(item: "Onion Rings")
-placeMyOrder(item: "Soda C")
-placeMyOrder(item: "Soda RB")
-placeMyOrder(item: "7up")
-placeMyOrder(item: "Chicken Sandwich")
-placeMyOrder(item: "Burger - Pizza")
-placeMyOrder(item: "Burger - Bacon")
-placeMyOrder(item: "Burger - Japaleno")
-placeMyOrder(item: "Cheese Stix")
-placeMyOrder(item: "Burger - Mushroom Swiss")
-placeMyOrder(item: "Burger - Everything")
-placeMyOrder(item: "Burger - Bean")
-calcTotals()
-
+//placeMyOrder(item: "French Fries")
+//placeMyOrder(item: "Onion Rings")
+//placeMyOrder(item: "Soda C")
+//placeMyOrder(item: "Soda RB")
+//placeMyOrder(item: "7up")
+//placeMyOrder(item: "Chicken Sandwich")
+//placeMyOrder(item: "Burger - Pizza")
+//placeMyOrder(item: "Burger - Bacon")
+//placeMyOrder(item: "Burger - Japaleno")
+//placeMyOrder(item: "Cheese Stix")
+//placeMyOrder(item: "Burger - Mushroom Swiss")
+//placeMyOrder(item: "Burger - Everything")
+//placeMyOrder(item: "Burger - Bean")
+//calcTotals()
+//
 
 var x = KarenTestClass()
 print("\n\n")
-print(x.sendAMsg(nbr1: 5, nbr2: 5, nbrAdded: 10))
+print(x.sendAMsg(nbr1: 5, nbr2: nil, nbrAdded: 10))
 
 var y = KarenTestSubclass()
 print("\n\n")
 print(y.sendAMsg(nbr1: 7, nbr2: 7, nbrAdded: 14))
+
+var z = KarenTestClass()
+print("\n\n")
+print(z.sendAMsg(nbr1: 7, nbr2: nil, nbrAdded: 14))
+
+
 
 
 
