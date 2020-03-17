@@ -266,6 +266,61 @@ class KarenTestSubclass: KarenTestClass {
     }
 }
 
+//.. worked on this class after looking and classes/subclasses LinkedIn learning video
+
+class KarenTestClass2 {
+    
+    //.. instance properties
+    var number1: Int
+    var number2: Int
+    var msg1: String = "This is how we do it..."
+    var msg2: String
+    
+    //.. type properties (these are for any and all instances of the class created
+    static var msg3 = "It\'s Friday night... "
+    
+    //.. optional properties
+    var msg4: String?
+    
+    //.. computed properties
+    var nbrsAdded: Int {
+        return number1 + number2
+    }
+    
+    var nbrsMult: Int {
+        get {
+            return number1 * number2
+        }
+        
+        set {
+            number1 = newValue
+        }
+    }
+    
+    //.. class initalization (main init)
+    init(number1: Int, number2: Int, msg2: String) {
+        self.number1 = number1
+        self.number2 = number2
+        self.msg2 = msg2
+    }
+    
+    convenience init(number1: Int, number2: Int) {
+        self.init(number1: number1, number2: number2, msg2: "what in the heck is going on")
+    }
+    
+    func printTest1(msg4: String?) {
+        
+        if let msg4 = msg4 {
+            print ("msg4 was NOT nil")
+        } else {
+            print("msg4 was nil")
+        }
+    }
+    
+    
+}
+
+
 //................................................................................................................................................
 //.. calculate all order totals and print
 func calcTotals() {
@@ -328,20 +383,43 @@ func calcTotals() {
 //calcTotals()
 //
 
-var x = KarenTestClass()
-print("\n\n")
-print(x.sendAMsg(nbr1: 5, nbr2: nil, nbrAdded: 10))
+//var x = KarenTestClass()
+//print("\n\n")
+//print(x.sendAMsg(nbr1: 5, nbr2: nil, nbrAdded: 10))
+//
+//var y = KarenTestSubclass()
+//print("\n\n")
+//print(y.sendAMsg(nbr1: 7, nbr2: 7, nbrAdded: 14))
+//
+//var z = KarenTestClass()
+//print("\n\n")
+//print(z.sendAMsg(nbr1: 7, nbr2: nil, nbrAdded: 14))
 
-var y = KarenTestSubclass()
-print("\n\n")
-print(y.sendAMsg(nbr1: 7, nbr2: 7, nbrAdded: 14))
+var a = KarenTestClass2(number1: 12, number2: 12)
+print("\n")
+print(a.nbrsAdded)
+print(a.nbrsMult)
+print(a.msg1)
+print(a.msg2)
+print(a.msg4)
 
-var z = KarenTestClass()
-print("\n\n")
-print(z.sendAMsg(nbr1: 7, nbr2: nil, nbrAdded: 14))
+var b = KarenTestClass2(number1: 5, number2: 4, msg2: "Oops! I did it again")
+print("\n")
+print(b.nbrsAdded)
+print(b.nbrsMult)
+print(b.msg1)
+print(b.msg2)
+print(b.msg4)
+print("number1 = \(b.number1)  number2 = \(b.number2)")
+b.number1 = 7
+print("\tnumber1 now set to = \(b.number1)")
+print("\t\(b.number1) + \(b.number2) = \(b.nbrsAdded)")
+print("\t\(b.number1) * \(b.number2) = \(b.nbrsMult)")
 
-
-
+var c = KarenTestClass2(number1: 2, number2: 1)
+print("\n")
+c.printTest1(msg4: nil)
+c.printTest1(msg4: "now the input string is NOT nil")
 
 
 
