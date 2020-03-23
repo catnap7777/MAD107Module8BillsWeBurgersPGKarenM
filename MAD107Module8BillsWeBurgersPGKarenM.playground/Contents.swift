@@ -207,12 +207,64 @@ func placeMyOrder (item: String) {
     
 }
 
+
 class KarenTestClass {
     
-    init() {
-        var nbr1: Int = 98
-        var nbr2: Int = 99
-        var nbrAdded: Int
+//    var nbr1: Int = 98
+//    var nbr2: Int? = 99
+//    var nbrAdded: Int
+//
+//    init(nbr1: Int, nbr2: Int?, nbrAdded: Int) {
+//        self.nbr1 = nbr1
+//        self.nbr2 = nbr2
+//        self.nbrAdded = nbrAdded
+//
+//    }
+    
+    var text: String
+    var nbr1a: Int = 99
+    var nbr2a: Int = 98
+    var nbr3a: Int = 97
+    
+    var nbr4: Int
+    
+    init(text: String, nbr4: Int) {
+        self.text = text
+        self.nbr4 = nbr4
+    }
+    
+    struct testStruct {
+        
+        var nbr5 = 9999
+        var nbr6 = 9998
+        var myString = "this is crazy!!!!"
+        
+        var myString2: String
+            {
+            get{
+                return "\n \(myString) nbr5 = \(nbr5) and nbr6 = \(nbr6)"
+            }
+        }
+    }
+    
+//    init(nbr1a: Int, nbr2a: Int, nbr3a: Int) {
+//        self.nbr1a = nbr1a
+//        self.nbr2a = nbr2a
+//        self.nbr3a = nbr3a
+//    }
+    
+//    init() {
+//        var nbr1a: Int = 98
+//        var nbr2a: Int = 99
+//        var nbr3a: Int = 0
+//    }
+    
+    func useInitializer() {
+        
+        print("Using initializers: nbr1a = \(nbr1a)")
+        print("Using initializers: nbr2a = \(nbr2a)")
+        print("Using initializers: nbr3a = \(nbr3a)")
+        
     }
 
     
@@ -222,23 +274,25 @@ class KarenTestClass {
         var nbrAdded2 = 0
         
         print("nbr1 initially ... \(nbr1)")
-        print("nbr2 initially ... \(nbr2 ?? 77)")
+        //print("nbr2 initially ... \(nbr2 ?? 77)")
+        print("nbr2 initially ... \(nbr2)")
         print("nbr3 initially ... \(nbr3)")
-        print("nbrAdded initially ... \(nbrAdded)")
+        print("nbrAdded initially ... \(nbrAdded)\n")
         
         if var nbr2test = nbr2 {
             nbr3 = nbr2test
             nbrAdded2 = nbrAdded
-            print("nbr3 is NOT nil coming in... nbr3 = \(nbr3)")
+            print("nbr2 is NOT nil coming in... nbr3 = \(nbr3)")
             
         } else {
             nbr3 = 1000
             nbrAdded2 = nbr3 + nbr1
-            print("nbr3 was initially nil, so set it to...nbr3 = \(nbr3)")
+            print("nbr2 was initially nil, so set it to...nbr3 = \(nbr3)")
             
         }
         
-        print("nbr3 right now: \(nbr3)")
+        print("\nnbr3 right now: \(nbr3)")
+        print("nbr2 right now: \(nbr2)")
         
         
         //        var msg1: String {
@@ -260,7 +314,8 @@ class KarenTestSubclass: KarenTestClass {
         //        }
         
         //var msg1: String {
-        let details = super.sendAMsg(nbr1: 5, nbr2: 7, nbrAdded: 12)
+        //let details = super.sendAMsg(nbr1: 5, nbr2: 7, nbrAdded: 12)
+        let details = super.sendAMsg(nbr1: nbr1, nbr2: nbr2, nbrAdded: 500000)  //<----- notice how third parm is overriden here too!
         return "Say what? \(details)"
         //}
     }
@@ -365,6 +420,23 @@ func calcTotals() {
     
 }
 
+
+
+struct testStruct2 {
+    
+    var nbr5: Int?  = 9999
+    var nbr6: Int? = 9998
+    var myString: String? = "this is crazy!!!!"
+    
+    var myString2: String
+    {
+        get{
+            return "\n \(myString ?? "not working") nbr5 = \(nbr5 ?? 0) and nbr6 = \(nbr6 ?? 0)"
+        }
+    }
+}
+
+
 //................................................................................................................................................
 //.. place the orders for each item desired; at end, calculate receipt totals
 //placeMyOrder(item: "French Fries")
@@ -387,39 +459,76 @@ func calcTotals() {
 //print("\n\n")
 //print(x.sendAMsg(nbr1: 5, nbr2: nil, nbrAdded: 10))
 //
+
+//var xyz = KarenTestClass()
+var y = KarenTestSubclass(text: "\nThis is flippin' insane!\n", nbr4: 1000)
 //var y = KarenTestSubclass()
-//print("\n\n")
-//print(y.sendAMsg(nbr1: 7, nbr2: 7, nbrAdded: 14))
+//var y = KarenTestSubclass(nbr1: 7, nbr2: nil, nbrAdded: 11)
+print("\n")
+print(y.sendAMsg(nbr1: 7, nbr2: nil, nbrAdded: 11))
+
+
+var a1 = KarenTestClass(text: "hi how are ya?", nbr4: 2000)
+print("\n")
+print(a1.useInitializer())
+print("\(a1.text) and the nbr4 is \(a1.nbr4)")
+
+var a2 = KarenTestClass(text: "trying something new...", nbr4: 3000)
+// print("\n")
+a2.useInitializer()
+print("\n")
+
+var a3 = KarenTestClass(text: "\ntrying to call the structure crazy...", nbr4: 4000)
+a3.nbr1a = 45
+a3.useInitializer()
+var a4 = a3.text
+print(a4)
+//var kamTestStructure = a3.testStruct  //does not work
+
+print("\n Test of Structure: ")
+//var a5 = testStruct2(nbr5: nil, nbr6: nil, myString: nil)
+var a5 = testStruct2()
+print(a5.myString2)
+
+
+
+
+
 //
+//var y2 = KarenTestSubclass(nbr1: 7, nbr2: 4, nbrAdded: 11)
+//print("\n\n")
+//print(y2.sendAMsg(nbr1: 7, nbr2: nil, nbrAdded: 11))
+//
+
 //var z = KarenTestClass()
 //print("\n\n")
 //print(z.sendAMsg(nbr1: 7, nbr2: nil, nbrAdded: 14))
 
-var a = KarenTestClass2(number1: 12, number2: 12)
-print("\n")
-print(a.nbrsAdded)
-print(a.nbrsMult)
-print(a.msg1)
-print(a.msg2)
-print(a.msg4)
+//var a = KarenTestClass2(number1: 12, number2: 12)
+//print("\n")
+//print(a.nbrsAdded)
+//print(a.nbrsMult)
+//print(a.msg1)
+//print(a.msg2)
+//print(a.msg4)
 
-var b = KarenTestClass2(number1: 5, number2: 4, msg2: "Oops! I did it again")
-print("\n")
-print(b.nbrsAdded)
-print(b.nbrsMult)
-print(b.msg1)
-print(b.msg2)
-print(b.msg4)
-print("number1 = \(b.number1)  number2 = \(b.number2)")
-b.number1 = 7
-print("\tnumber1 now set to = \(b.number1)")
-print("\t\(b.number1) + \(b.number2) = \(b.nbrsAdded)")
-print("\t\(b.number1) * \(b.number2) = \(b.nbrsMult)")
-
-var c = KarenTestClass2(number1: 2, number2: 1)
-print("\n")
-c.printTest1(msg4: nil)
-c.printTest1(msg4: "now the input string is NOT nil")
-
+//var b = KarenTestClass2(number1: 5, number2: 4, msg2: "Oops! I did it again")
+//print("\n")
+//print(b.nbrsAdded)
+//print(b.nbrsMult)
+//print(b.msg1)
+//print(b.msg2)
+//print(b.msg4)
+//print("number1 = \(b.number1)  number2 = \(b.number2)")
+//b.number1 = 7
+//print("\tnumber1 now set to = \(b.number1)")
+//print("\t\(b.number1) + \(b.number2) = \(b.nbrsAdded)")
+//print("\t\(b.number1) * \(b.number2) = \(b.nbrsMult)")
+//
+//var c = KarenTestClass2(number1: 2, number2: 1)
+//print("\n")
+//c.printTest1(msg4: nil)
+//c.printTest1(msg4: "now the input string is NOT nil")
+//
 
 
